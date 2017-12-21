@@ -7,7 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "CardMatchingGameView.h"
 
-@interface SetGameViewController : ViewController
+@interface SetGameViewController : UIViewController
+@property (nonatomic,strong) CardMatchingGameView *game2;
+
 
 @end

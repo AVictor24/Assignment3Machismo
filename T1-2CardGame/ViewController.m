@@ -10,8 +10,6 @@
 #import "ViewController.h"
 #import "PlayingCardDeck.h"
 #import "CardMatchingGame.h"
-#import "HistoryViewController.h"
-
 @interface ViewController ()
 
 
@@ -39,12 +37,18 @@
  }
  */
 
+-(void)createViews{
+    
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //self.numberOfMatches.delegate = self;
     
     self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+    //self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardViews count] usingDeck:[self createDeck]];
     
     self.historyText = [[NSMutableAttributedString alloc]initWithString:@""];
     
@@ -81,6 +85,7 @@
 - (IBAction)touchRedealButton:(UIButton *)sender {
     
     self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardButtons count] usingDeck:[self createDeck]];
+    //self.game = [[CardMatchingGame alloc] initWithCardCount:[self.cardViews count] usingDeck:[self createDeck]];
     [self updateUI];
     self.segmentControl.selectedSegmentIndex = 0;
     self.segmentControl.enabled = true;
@@ -93,6 +98,14 @@
     self.segmentControl.enabled = false;
     [self updateUI];
 }
+
+/*  ^^
+ //add gestures
+ - (IBAction)swipe:(UISwipeGestureRecognizer *)sender {
+ 
+ self.playingCardView.faceUp = !self.playingCardView.faceUp;
+ }
+ */
 
 - (void)updateUI{
     
@@ -110,35 +123,21 @@
 
        
     }
-     NSAttributedString *bck = [[NSAttributedString alloc] initWithString:@"\n"];
-    if([[self.game isMatch] isEqual:@1]){
-        
-        [self.game setMatch:@0];
-        
-        NSMutableAttributedString* ss = [[NSMutableAttributedString alloc] initWithAttributedString:self.historyText];
-        [ss appendAttributedString:[self.game getDisplay]];
-        
-        if(![self.historyText isEqualToAttributedString: ss]){
-        
-        
-            [self.historyText appendAttributedString:[self.game getDisplay]];
-            [self.historyText appendAttributedString:bck];
-            
-            
-        }
-    }
     
-}
-
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"History"]){
-        if([segue.destinationViewController isKindOfClass:[HistoryViewController class]]){
-            HistoryViewController *tsvc = (HistoryViewController *)segue.destinationViewController;
-            
-            tsvc.textToAnalyze = self.historyText;
-            
-        }
+    /*
+    for(UIView *cardView in self.cardViews){
+        NSUInteger cardIndex = [self.cardViews indexOfObject:cardView];
+        Card *card = [self.game cardAtIndex:cardIndex];
+        
+        //[cardButton setAttributedTitle:[self titleForCard:card] forState:UIControlStateNormal];
+        //[cardButton setBackgroundImage:[self backgroundImageForCard:card] forState:UIControlStateNormal];
+        //cardView.enabled = !card.faceUp;
+        self.scoreLabel.text = [NSString stringWithFormat:@"Score: %ld", (long)self.game.score];
+        self.infoLabel.attributedText = [self.game getDisplay];
     }
+     */
+    
+    
 }
 
 - (NSAttributedString *)titleForCard:(Card *)card{
@@ -154,7 +153,7 @@
 }
 
 - (UIImage *)backgroundImageForCard:(Card *)card{
-    return [UIImage imageNamed:card.isChosen ? @"cardFront" : @"lights"];
+    return [UIImage imageNamed:card.isChosen ? @"selectedFront" : @"lights"];
 }
 
 @end

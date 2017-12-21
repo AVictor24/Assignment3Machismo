@@ -1,15 +1,16 @@
 //
-//  PlayingCardSet.h
+//  PlayingCardSetView.h
 //  T1-2CardGame
 //
-//  Created by User on 23/11/2017.
+//  Created by User on 14/12/2017.
 //  Copyright © 2017 User. All rights reserved.
 //
 
-#import "Card.h"
+#import <Foundation/Foundation.h>
+#import "CardView.h"
+#import <QuartzCore/QuartzCore.h>
 
-
-@interface PlayingCardSet : Card
+@interface PlayingCardSetView : CardView
 
 @property (strong, nonatomic) NSString *shape;
 @property (strong, nonatomic) NSString *shading;
@@ -20,4 +21,5 @@
 + (NSArray *)validShape;
 + (NSArray *)validColors;
 + (NSArray *)validShades;
+
 @end

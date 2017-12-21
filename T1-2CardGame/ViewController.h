@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *numberOfMatches;
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *cardButtons;
+@property (strong, nonatomic) IBOutletCollection(UIView) NSArray *cardViews;
 @property (nonatomic,strong) CardMatchingGame *game;
 @property (strong, nonatomic) NSMutableAttributedString *historyText; 
 

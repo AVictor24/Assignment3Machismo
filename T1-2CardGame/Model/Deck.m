@@ -7,6 +7,7 @@
 //
 
 #import "Deck.h"
+#import <UIKit/UIKit.h>
 
 @interface Deck()
 @property (strong, nonatomic) NSMutableArray *cards; // of Card

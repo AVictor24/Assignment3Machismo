@@ -53,7 +53,7 @@
 }
 
 - (Card *)cardAtIndex:(NSUInteger)index{
-    return (index < [self.cards count]) ? self.cards[index] : nil; //if else
+    return (index < [self.cards count]) ? self.cards[index] : nil; 
 }
 
 - (void)setNumberOfMatches:(int)number{
@@ -94,19 +94,16 @@ static const int COST_TO_CHOOSE = 1;
     
     if(matchScore){
         self.score +=matchScore * MATCH_BONUS;
-        //NSString* matchMesage = @"Matched";
-        NSMutableAttributedString *matchMesage2 = [[NSMutableAttributedString alloc] initWithString:@"Matched"]; //make with AtributedString
+        NSMutableAttributedString *matchMesage2 = [[NSMutableAttributedString alloc] initWithString:@"Matched"]; 
         for(Card * eachCard in array){
             eachCard.matched = YES;
             [matchMesage2 appendAttributedString:eachCard.contents];
             [matchMesage2 appendAttributedString: [[NSMutableAttributedString alloc] initWithString:@" "]];
-            //matchMesage = [matchMesage stringByAppendingString:eachCard.contents];
-            //matchMesage = [matchMesage stringByAppendingString:@" "];
+
         }
         NSAttributedString *format = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"for %d points.", matchScore * MATCH_BONUS]];
         
         [matchMesage2 appendAttributedString:format];
-       // self.display = [matchMesage stringByAppendingString:[NSString stringWithFormat:@"for %d points.", matchScore * MATCH_BONUS]];
         self.display = matchMesage2;
     self.matched = @1;
 
